@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('employmentstatus');
             $table->date('startperiod');
             $table->date('endperiod');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

@@ -22,7 +22,11 @@
                                 {{ \Carbon\Carbon::parse($ja->endperiod)->format('M Y') }}</p>
                         </div>
                         <div class="job-action-horizontal">
-                            <a href="#" class="apply-btn">View Details</a>
+                            @if (Auth::check())
+                                <a href="{{ route('view.jobappdetail', $ja->slug) }}" class="apply-btn">View Details</a>
+                            @else
+                                <a href="{{ route('view.login') }}" class="apply-btn">View Details</a>
+                            @endif
                         </div>
                     </div>
                 @endforeach

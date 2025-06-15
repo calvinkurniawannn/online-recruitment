@@ -22,6 +22,7 @@ return new class extends Migration
             $table->rememberToken();
             $table->string('created_by')->default('admin');
             $table->string('modified_by')->default('admin');
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }

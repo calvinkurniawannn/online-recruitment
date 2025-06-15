@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -21,7 +22,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 0,
             'created_by' => 'system',
-            'modified_by' => 'system'
+            'modified_by' => 'system',
+            'slug' => Str::random(20)
         ]);
         User::create([
             'name' => 'applicant',
@@ -30,7 +32,8 @@ class UserSeeder extends Seeder
             'password' => Hash::make('password'),
             'role' => 1,
             'created_by' => 'system',
-            'modified_by' => 'system'
+            'modified_by' => 'system',
+            'slug' => Str::random(20)
         ]);
     }
 }

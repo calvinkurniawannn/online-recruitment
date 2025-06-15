@@ -2,12 +2,50 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
+use App\Models\Applicant;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
+
+    public function post_signup(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|string|min:6|confirmed',
+            'birthdate' => 'required|date',
+            'gender' => 'required|in:male,female,other',
+            'address' => 'required|string|max:500',
+        ]);
+
+        // Create the user and store into a variable
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'created_by' => 'system',
+            'modified_by' => 'system'
+        ]);
+
+        Applicant::create([
+            'user_id' => $user->id,
+            'official_name' => $request->name,
+            'birthdate' => $request->birthdate,
+            'gender' => $request->gender,
+            'address' => $request->address,
+            'slug' => $user->slug
+        ]);
+
+
+        return redirect()->route('view.login')->with('success', 'Registration successful!');
+    }
+
     public function post_login(Request $request)
     {
         // Validate input

@@ -9,6 +9,9 @@
                 <a href="{{ route('view.landingpage') }}">Hello slamat datang{{ Auth::user()->name }}</a>
             </li>
             <li>
+                <a href="{{ route('view.myprofile', Auth::user()->slug) }}">My Profile</a>
+            </li>
+            <li>
                 <a href="{{ route('post.logout') }}">Logout</a>
             </li>
         </ul>

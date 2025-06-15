@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -24,6 +25,7 @@ class JobapplicationSeeder extends Seeder
                 'endperiod' => '2025-12-31',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'slug' => Str::random(20)
             ],
             [
                 'jobapplicationtitle' => 'Project Manager',
@@ -35,6 +37,7 @@ class JobapplicationSeeder extends Seeder
                 'endperiod' => '2026-01-31',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'slug' => Str::random(20)
             ],
             [
                 'jobapplicationtitle' => 'Graphic Designer',
@@ -46,6 +49,7 @@ class JobapplicationSeeder extends Seeder
                 'endperiod' => '2026-03-31',
                 'created_at' => now(),
                 'updated_at' => now(),
+                'slug' => Str::random(20)
             ],
         ]);
     }

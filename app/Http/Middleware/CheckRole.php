@@ -10,7 +10,6 @@ class CheckRole
     public function handle($request, Closure $next, ...$roles)
     {
         if (!Auth::check()) {
-            // user not logged in
             return redirect('/');
         }
 

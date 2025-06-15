@@ -15,7 +15,8 @@
             </div>
         @endif
 
-        <form action="/" method="POST">
+        <form action="/post-signup" method="POST">
+
             @csrf
 
             <div class="mb-3">
@@ -38,12 +39,28 @@
                 <input type="password" name="password_confirmation" class="form-control" required>
             </div>
 
-            {{-- Optional role selection (or you can hide this if you want role = 0 by default) --}}
-            <input type="text" name="role" value="0">
+            {{-- Birthdate Field --}}
+            <div class="mb-3">
+                <label for="birthdate" class="form-label">Birthdate</label>
+                <input type="date" name="birthdate" class="form-control" value="{{ old('birthdate') }}" required>
+            </div>
 
-            {{-- Hidden system fields --}}
-            <input type="hidden" name="created_by" value="system">
-            <input type="hidden" name="modified_by" value="system">
+            {{-- Gender Field --}}
+            <div class="mb-3">
+                <label for="gender" class="form-label">Gender</label>
+                <select name="gender" class="form-control" required>
+                    <option value="">-- Select Gender --</option>
+                    <option value="male" {{ old('gender') == 'male' ? 'selected' : '' }}>Male</option>
+                    <option value="female" {{ old('gender') == 'female' ? 'selected' : '' }}>Female</option>
+
+                </select>
+            </div>
+
+            {{-- Address Field --}}
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <textarea name="address" class="form-control" rows="3">{{ old('address') }}</textarea>
+            </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
         </form>

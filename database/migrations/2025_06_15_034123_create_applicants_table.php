@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('birthdate');
             $table->string('gender');
             $table->longText('address')->nullable();
+            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
